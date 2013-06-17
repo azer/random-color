@@ -6,7 +6,7 @@ Module to generate random RGB colors
 randomColor = require('random-color')
 
 randomColor()
-// => rgb(30, 40, 50)
+// => rgb(230, 120, 50)
 
 randomColor(25)
 // => rgb(22, 13, 5)
