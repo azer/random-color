@@ -1,6 +1,6 @@
 {
   "name": "random-color",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Module to generate random RGB colors",
   "main": "index.js",
   "scripts": {
