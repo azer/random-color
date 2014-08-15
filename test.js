@@ -1,42 +1,64 @@
-var randomColor = require("./"),
-    reRGB       = /^rgb\((\d+),\s?(\d+),\s?(\d+)\)$/;
+var test = require('prova');
+var test = require('prova');
+var randomColor = require("./");
+var reRGB = /^rgb\((\d+),\s?(\d+),\s?(\d+)\)$/;
 
-it('returns a random color', function(){
+test('returns a random color', function (t) {
+  t.plan(8);
 
   var a = randomColor(),
       b = randomColor(),
       c = randomColor();
 
-  expect(a).to.not.equal(b);
-  expect(b).to.not.equal(c);
+  t.notEqual(a, b);
+  t.notEqual(b, c);
 
-  expect(a).to.match(reRGB);
-  expect(b).to.match(reRGB);
-  expect(c).to.match(reRGB);
+  t.ok(reRGB.test(a));
+  t.ok(reRGB.test(b));
+  t.ok(reRGB.test(c));
 
-  expect(verify(a)).to.be.true;
-  expect(verify(b)).to.be.true;
-  expect(verify(c)).to.be.true;
+  t.ok(verify(a));
+  t.ok(verify(b));
+  t.ok(verify(c));
 
 });
 
-it('allows specifying a cap number', function(){
+test('allows specifying a max number', function (t) {
+  t.plan(3);
 
   var a = randomColor(25),
       b = randomColor(25),
       c = randomColor(25);
 
-  expect(verify(a), 25).to.be.true;
-  expect(verify(b), 25).to.be.true;
-  expect(verify(c), 25).to.be.true;
+  t.ok(verify(a, 25));
+  t.ok(verify(b, 25));
+  t.ok(verify(c, 25));
+});
 
+test('allows specifying min number', function (t) {
+  t.plan(6);
+
+  var a = randomColor(25, 20);
+  var b = randomColor(25, 20);
+  var c = randomColor(25, 20);
+  var d = randomColor(25, 20);
+  var e = randomColor(25, 20);
+  var f = randomColor(25, 20);
+
+  t.ok(verify(a, 25, 20));
+  t.ok(verify(b, 25, 20));
+  t.ok(verify(c, 25, 20));
+  t.ok(verify(d, 25, 20));
+  t.ok(verify(e, 25, 20));
+  t.ok(verify(f, 25, 20));
 });
 
 
-function verify(rgb, cap){
-  cap || ( cap = 255 );
+function verify(rgb, max, min){
+  max || ( max = 255 );
+  min || ( min = 0 );
 
   return rgb.match(/^rgb\((\d+),\s?(\d+),\s?(\d+)\)$/).slice(1).map(Number).every(function(n){
-    return n < 256 && n > -1;
+    return n <= max && n >= min;
   });
 }

@@ -12,12 +12,15 @@
     "rgb"
   ],
   "devDependencies": {
-    "fox": "*"
+    "prova": "*"
   },
   "repository": {
-    "url": "git@github.com:azer\/random-color.git",
+    "url": "git@github.com:azer/random-color.git",
     "type": "git"
   },
-  "author": "Azer Ko\u00e7ulu <azer@kodfabrik.com>",
-  "license": "BSD"
+  "author": "Azer Koçulu <azer@kodfabrik.com>",
+  "license": "BSD",
+  "dependencies": {
+    "rnd": "0.0.0"
+  }
 }
