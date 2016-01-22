@@ -8,8 +8,13 @@ randomColor = require('random-color')
 randomColor()
 // => rgb(230, 120, 50)
 
+// Set maximum
 randomColor(25)
 // => rgb(22, 13, 5)
+
+// Set maximum, minimum 
+randomColor(50, 25)
+// => rgb(32, 40, 26)
 ```
 
 ## Install
