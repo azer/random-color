@@ -3,7 +3,7 @@
 Module to generate random RGB colors
 
 ```js
-randomColor = require('random-color')
+var randomColor = require('random-color')
 
 randomColor()
 // => rgb(230, 120, 50)
